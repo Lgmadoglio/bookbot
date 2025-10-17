@@ -1,7 +1,14 @@
 from stats import *
+import sys
 
 def main():
-    text = get_book_text("books/Frankenstein.txt")
+
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+
+        sys.exit(1)        
+
+    text = get_book_text(sys.argv[1])
     num = get_word_count(text)
     count = get_char_count(text)
     char_list = []
@@ -20,6 +27,6 @@ def main():
     print(f"Found {num} total words")
     print("--------- Character Count -------")
     for a in char_list:
-        print( str(a["char"])+ " : " + str(a["num_times"]))
+        print( str(a["char"])+ ": " + str(a["num_times"]))
 
 main()
